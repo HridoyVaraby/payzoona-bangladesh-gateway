@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -52,6 +53,13 @@ export default {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))'
 				},
+        payzoona: {
+          blue: '#2563EB',
+          indigo: '#3730A3',
+          gray: '#F9FAFB',
+          'text-gray': '#4B5563',
+          'dark-blue': '#1E40AF',
+        },
 				sidebar: {
 					DEFAULT: 'hsl(var(--sidebar-background))',
 					foreground: 'hsl(var(--sidebar-foreground))',
@@ -84,11 +92,27 @@ export default {
 					to: {
 						height: '0'
 					}
-				}
+				},
+        fadeIn: {
+          '0%': { opacity: '0' },
+          '100%': { opacity: '1' }
+        },
+        slideUp: {
+          '0%': { transform: 'translateY(20px)', opacity: '0' },
+          '100%': { transform: 'translateY(0)', opacity: '1' }
+        }
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
+				'accordion-up': 'accordion-up 0.2s ease-out',
+        'fade-in': 'fadeIn 0.5s ease-in-out',
+        'slide-up': 'slideUp 0.5s ease-in-out'
+			},
+      fontFamily: {
+        'inter': ['Inter', 'sans-serif'],
+      },
+			backgroundImage: {
+				'gradient-primary': 'linear-gradient(to right, #2563EB, #3730A3)',
 			}
 		}
 	},
