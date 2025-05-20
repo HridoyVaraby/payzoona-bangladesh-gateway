@@ -1,21 +1,17 @@
+
 #root {
-  max-width: 1280px;
+  width: 100%;
   margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
 }
 
+/* Remove unnecessary styles */
 .logo {
-  height: 6em;
-  padding: 1.5em;
   will-change: filter;
   transition: filter 300ms;
 }
+
 .logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+  filter: drop-shadow(0 0 6px #646cffaa);
 }
 
 @keyframes logo-spin {
@@ -28,15 +24,43 @@
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
+  .rotate {
     animation: logo-spin infinite 20s linear;
   }
 }
 
-.card {
-  padding: 2em;
+/* Modern styling for card components */
+.modern-card {
+  @apply bg-white rounded-xl shadow-soft border border-gray-50 transition-all duration-300 hover:shadow-soft-lg hover:border-blue-100/50;
 }
 
-.read-the-docs {
-  color: #888;
+/* Modern form styling */
+.modern-form-input {
+  @apply bg-gray-50/50 border-gray-200 focus:border-blue-300 focus:ring focus:ring-blue-100 rounded-lg transition-all;
+}
+
+/* Add dot pattern overlay */
+.dot-pattern {
+  background-image: radial-gradient(rgba(37, 99, 235, 0.1) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+/* Gradient effect for sections */
+.gradient-section {
+  background: linear-gradient(to bottom, rgba(249, 250, 251, 0) 0%, rgba(249, 250, 251, 1) 100%);
+}
+
+/* Wave divider between sections */
+.wave-divider {
+  position: relative;
+  height: 50px;
+  margin-top: -50px;
+}
+
+.wave-divider svg {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 }

@@ -1,5 +1,5 @@
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -35,7 +35,7 @@
     --input: 214 32% 91%;
     --ring: 221 83% 53%;
 
-    --radius: 0.5rem;
+    --radius: 0.75rem;
 
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5% 26%;
@@ -80,11 +80,15 @@
 
 @layer base {
   * {
-    @apply border-border;
+    @apply border-border scroll-smooth;
   }
 
   body {
-    @apply bg-background text-foreground font-inter;
+    @apply bg-background text-foreground font-inter antialiased;
+  }
+  
+  ::selection {
+    @apply bg-payzoona-blue/20 text-payzoona-indigo;
   }
 }
 
@@ -94,34 +98,78 @@
   }
   
   .btn-primary {
-    @apply px-6 py-2.5 bg-gradient-primary text-white rounded-full font-medium hover:shadow-lg transition-all duration-300 inline-flex items-center;
+    @apply px-6 py-2.5 bg-gradient-primary text-white rounded-full font-medium shadow-soft hover:shadow-soft-lg hover:brightness-105 transition-all duration-300 inline-flex items-center;
   }
   
   .btn-secondary {
-    @apply px-6 py-2.5 bg-white border border-gray-200 text-payzoona-indigo rounded-full font-medium hover:shadow-lg transition-all duration-300 inline-flex items-center;
+    @apply px-6 py-2.5 bg-white border border-gray-200 text-payzoona-indigo rounded-full font-medium hover:shadow-soft hover:border-payzoona-blue/30 transition-all duration-300 inline-flex items-center;
   }
   
   .section {
-    @apply py-16 md:py-24;
+    @apply py-20 md:py-28 relative;
   }
   
   .container-custom {
-    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10;
   }
   
   .heading-xl {
-    @apply text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight;
+    @apply text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight font-space-grotesk;
   }
   
   .heading-lg {
-    @apply text-3xl md:text-4xl font-bold tracking-tight;
+    @apply text-3xl md:text-4xl font-bold tracking-tight font-space-grotesk;
   }
   
   .heading-md {
-    @apply text-2xl md:text-3xl font-bold;
+    @apply text-2xl md:text-3xl font-bold font-space-grotesk;
   }
   
   .heading-sm {
-    @apply text-xl md:text-2xl font-bold;
+    @apply text-xl md:text-2xl font-bold font-space-grotesk;
+  }
+  
+  .glass-card {
+    @apply bg-white/70 backdrop-blur-sm border border-white/20 rounded-xl shadow-soft;
+  }
+  
+  .shadow-soft {
+    @apply shadow-[0_8px_30px_rgb(0,0,0,0.04)];
+  }
+  
+  .shadow-soft-lg {
+    @apply shadow-[0_15px_35px_rgb(0,0,0,0.08)];
+  }
+  
+  .animate-on-scroll {
+    @apply opacity-0;
+  }
+  
+  .animate-fade-in {
+    animation: fadeIn 0.6s ease-out forwards;
+  }
+  
+  .animate-slide-up {
+    animation: slideUp 0.6s ease-out forwards 0.1s;
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
