@@ -51,7 +51,7 @@ const CallToAction = ({
           </Link>
           {secondaryButtonText && secondaryButtonLink && (
             <Link to={secondaryButtonLink}>
-              <Button variant={gradient ? "outline" : "secondary"} className={`rounded-full px-8 py-6 text-lg font-semibold ${gradient ? 'border-white text-white hover:bg-white/10' : ''}`}>
+              <Button variant={gradient ? "outline" : "secondary"} className={`rounded-full px-8 py-6 text-lg font-semibold ${gradient ? 'border-white text-gray-800 bg-white hover:bg-white/90 hover:text-gray-900' : ''}`}>
                 {secondaryButtonText}
               </Button>
             </Link>
