@@ -29,7 +29,8 @@ const ContactForm = () => {
     setIsSubmitting(true);
     
     try {
-      const response = await fetch('/api/send-email.php', {
+      // Use relative path for production environment
+      const response = await fetch('./api/send-email.php', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

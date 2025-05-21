@@ -2,8 +2,15 @@
 // Ensure no output before headers
 ob_start();
 
+// Enable error logging
+ini_set('display_errors', 0);
+ini_set('log_errors', 1);
+ini_set('error_log', __DIR__ . '/php_errors.log');
+
 // Set error handling to catch any PHP errors
 set_error_handler(function($errno, $errstr, $errfile, $errline) {
+    // Log the error
+    error_log("PHP Error [$errno]: $errstr in $errfile on line $errline");
     http_response_code(500);
     echo json_encode(['error' => 'PHP Error: ' . $errstr]);
     exit;
