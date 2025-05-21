@@ -32,9 +32,9 @@ const Navbar = () => {
 
           {/* Action Buttons - Desktop */}
           <div className="hidden lg:flex items-center space-x-4">
-            <Link to="/contact">
+            <a href="https://wa.me/8801301100382" target="_blank" rel="noopener noreferrer">
               <Button variant="outline" className="rounded-full">Contact Sales</Button>
-            </Link>
+            </a>
             <Link to="/onboarding">
               <Button className="bg-gradient-primary hover:brightness-110 rounded-full">Get Started</Button>
             </Link>
@@ -65,9 +65,9 @@ const Navbar = () => {
             <Link to="/contact" onClick={toggleMenu} className="block text-gray-700 hover:text-payzoona-blue font-medium transition-colors">Contact</Link>
           </nav>
           <div className="flex flex-col space-y-3">
-            <Link to="/contact" onClick={toggleMenu}>
+            <a href="https://wa.me/8801301100382" target="_blank" rel="noopener noreferrer" onClick={toggleMenu}>
               <Button variant="outline" className="w-full rounded-full">Contact Sales</Button>
-            </Link>
+            </a>
             <Link to="/onboarding" onClick={toggleMenu}>
               <Button className="w-full bg-gradient-primary hover:brightness-110 rounded-full">Get Started</Button>
             </Link>
