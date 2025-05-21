@@ -8,22 +8,29 @@ interface LayoutProps {
 }
 
 const Layout = ({ children }: LayoutProps) => {
-  // Add fade-in animation to content on page load
+  // Add fade-in animation to content on page load, but make sure elements don't disappear
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          entry.target.classList.add('animate-fade-in');
-          observer.unobserve(entry.target);
+          entry.target.classList.add('fade-in-element');
+          // Don't unobserve to prevent elements from disappearing
         }
       });
     }, { threshold: 0.1 });
 
+    // Replace animate-on-scroll with fade-in-element for better stability
     const animateElements = document.querySelectorAll('.animate-on-scroll');
-    animateElements.forEach((el) => observer.observe(el));
+    animateElements.forEach((el) => {
+      el.classList.remove('animate-on-scroll');
+      el.classList.add('fade-in-element');
+      observer.observe(el);
+    });
 
     return () => {
-      animateElements.forEach((el) => observer.unobserve(el));
+      document.querySelectorAll('.fade-in-element').forEach((el) => {
+        observer.unobserve(el);
+      });
     };
   }, []);
 
