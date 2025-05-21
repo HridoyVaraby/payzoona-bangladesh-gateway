@@ -1,4 +1,14 @@
 <?php
+// Ensure no output before headers
+ob_start();
+
+// Set error handling to catch any PHP errors
+set_error_handler(function($errno, $errstr, $errfile, $errline) {
+    http_response_code(500);
+    echo json_encode(['error' => 'PHP Error: ' . $errstr]);
+    exit;
+});
+
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: POST');
 header('Access-Control-Allow-Headers: Content-Type');
@@ -30,7 +40,13 @@ foreach ($required_fields as $field) {
 }
 
 // Composer autoloader
-require 'vendor/autoload.php';
+try {
+    require 'vendor/autoload.php';
+} catch (Exception $e) {
+    http_response_code(500);
+    echo json_encode(['error' => 'Failed to load required dependencies: ' . $e->getMessage()]);
+    exit;
+}
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
@@ -100,3 +116,6 @@ try {
     http_response_code(500);
     echo json_encode(['error' => 'Message could not be sent. Mailer Error: ' . $errorMessage]);
 }
+
+// Flush output buffer to ensure all content is sent
+ob_end_flush();

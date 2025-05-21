@@ -37,7 +37,18 @@ const ContactForm = () => {
         body: JSON.stringify(formData),
       });
       
-      const data = await response.json();
+      // Clone the response before reading it to avoid the stream already read error
+      const responseClone = response.clone();
+      
+      let data;
+      try {
+        data = await response.json();
+      } catch (parseError) {
+        // Handle JSON parsing errors by using the cloned response
+        const text = await responseClone.text();
+        console.error('Failed to parse response as JSON:', text);
+        throw new Error('Server returned an invalid response. Please try again later.');
+      }
       
       if (data.success) {
         toast({
