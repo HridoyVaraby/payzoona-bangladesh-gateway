@@ -12,7 +12,7 @@ const Footer = () => {
           {/* Company Info */}
           <div className="lg:col-span-2">
             <Link to="/" className="inline-block mb-4">
-              <div className="font-bold text-2xl text-payzoona-indigo">Payzoona</div>
+              <div className="font-bold text-2xl text-payzoona-indigo font-space-grotesk">Payzoona</div>
             </Link>
             <p className="text-gray-600 mb-6 max-w-md">
               Accept payments in BDT, receive settlements in your preferred currency. 
@@ -53,7 +53,6 @@ const Footer = () => {
               <li><Link to="/about" className="text-gray-600 hover:text-payzoona-blue">About Us</Link></li>
               <li><Link to="/services" className="text-gray-600 hover:text-payzoona-blue">Services</Link></li>
               <li><Link to="/contact" className="text-gray-600 hover:text-payzoona-blue">Contact</Link></li>
-              <li><Link to="/faqs" className="text-gray-600 hover:text-payzoona-blue">FAQs</Link></li>
             </ul>
           </div>
           
@@ -87,9 +86,9 @@ const Footer = () => {
               &copy; {currentYear} Payzoona. All rights reserved.
             </p>
             <div className="flex space-x-6">
-              <Link to="#" className="text-sm text-gray-500 hover:text-payzoona-blue">Terms of Service</Link>
-              <Link to="#" className="text-sm text-gray-500 hover:text-payzoona-blue">Privacy Policy</Link>
-              <Link to="#" className="text-sm text-gray-500 hover:text-payzoona-blue">Security</Link>
+              <Link to="/terms" className="text-sm text-gray-500 hover:text-payzoona-blue">Terms of Service</Link>
+              <Link to="/privacy" className="text-sm text-gray-500 hover:text-payzoona-blue">Privacy Policy</Link>
+              <Link to="/security" className="text-sm text-gray-500 hover:text-payzoona-blue">Security</Link>
             </div>
           </div>
         </div>
