@@ -3,9 +3,34 @@ import React from 'react';
 import Layout from '../components/layout/Layout';
 import SectionHeader from '../components/shared/SectionHeader';
 import CallToAction from '../components/shared/CallToAction';
+import FaqSection from '../components/shared/FaqSection';
 import { ShieldCheck, Globe, Users } from 'lucide-react';
 
 const AboutUs = () => {
+  // FAQ data specific to the About page
+  const aboutFaqs = [
+    {
+      question: "Who is behind Payzoona?",
+      answer: "Payzoona was founded by a team of fintech experts with extensive experience in payment processing, software development, and international finance, specifically focused on the Bangladesh market."
+    },
+    {
+      question: "Is Payzoona licensed and regulated?",
+      answer: "Yes, Payzoona operates under all required licenses from Bangladesh Bank and follows all regulations for payment processors operating in Bangladesh."
+    },
+    {
+      question: "How secure are your payment systems?",
+      answer: "Our payment infrastructure uses bank-grade security with PCI DSS compliance, end-to-end encryption, and advanced fraud detection systems to ensure maximum security."
+    },
+    {
+      question: "Do you provide technical support for integration?",
+      answer: "Yes, our dedicated developer team handles the entire integration process for you. After you sign up, we'll set up the payment gateway in your system without you needing to hire additional developers."
+    },
+    {
+      question: "What makes Payzoona different from other payment gateways?",
+      answer: "Payzoona specializes in connecting Bangladesh to the global economy, allowing businesses to accept BDT while settling in their preferred international currency, with full integration support from our team."
+    }
+  ];
+
   return (
     <Layout>
       {/* Hero Section */}
@@ -85,7 +110,7 @@ const AboutUs = () => {
             <p>
               Based in Dhaka with a growing team of payment specialists, developers, and customer 
               success professionals, we're committed to continuous improvement of our platform and 
-              services to meet the evolving needs of our clients.
+              services to meet the evolving needs of our clients. Our developer team handles all integration needs, so you can focus on your business.
             </p>
           </div>
 
@@ -196,8 +221,11 @@ const AboutUs = () => {
         </div>
       </section>
 
+      {/* FAQ Section */}
+      <FaqSection bgColor="bg-gray-50" faqs={aboutFaqs} />
+
       {/* Call To Action */}
-      <section className="section bg-gray-50">
+      <section className="section bg-white">
         <div className="container-custom">
           <CallToAction
             title="Join us on our mission"

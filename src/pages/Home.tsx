@@ -7,8 +7,35 @@ import { CreditCard, Globe, ShieldCheck, Code, DollarSign } from 'lucide-react';
 import FeatureCard from '../components/shared/FeatureCard';
 import CallToAction from '../components/shared/CallToAction';
 import SectionHeader from '../components/shared/SectionHeader';
+import PaymentChannels from '../components/shared/PaymentChannels';
+import DeveloperSupport from '../components/shared/DeveloperSupport';
+import FaqSection from '../components/shared/FaqSection';
 
 const Home = () => {
+  // FAQ data for the home page
+  const homeFaqs = [
+    {
+      question: "What payment methods does Payzoona support?",
+      answer: "Payzoona supports all major payment methods in Bangladesh including Visa, Mastercard, American Express, bKash, Nagad, Rocket, bank transfers, and more."
+    },
+    {
+      question: "How does the integration process work?",
+      answer: "After you sign up, our dedicated developer team will handle the entire integration process for you. You don't need to hire additional developers or have technical expertise."
+    },
+    {
+      question: "In which currencies can I receive settlements?",
+      answer: "You can receive settlements in multiple currencies including USD, GBP, EUR, and BDT based on your preference and business needs."
+    },
+    {
+      question: "How long does it take to go live with Payzoona?",
+      answer: "The typical onboarding process takes 1-2 weeks, including account verification and technical integration. Our team works efficiently to get you up and running as quickly as possible."
+    },
+    {
+      question: "Is Payzoona suitable for businesses outside Bangladesh?",
+      answer: "Yes, Payzoona is specifically designed to help international businesses accept payments from Bangladeshi customers while receiving settlements in their preferred currency."
+    }
+  ];
+
   return (
     <Layout>
       {/* Hero Section */}
@@ -128,6 +155,12 @@ const Home = () => {
         </div>
       </section>
 
+      {/* Payment Channels Section */}
+      <PaymentChannels />
+
+      {/* Developer Support Section - highlighting that we handle the integration */}
+      <DeveloperSupport />
+
       {/* Use Cases Section */}
       <section className="section bg-gray-50">
         <div className="container-custom">
@@ -200,9 +233,9 @@ const Home = () => {
                 <span className="text-xl font-bold text-payzoona-blue">2</span>
                 <div className="absolute h-px w-full md:w-[calc(100%+2rem)] bg-dashed border-t border-dashed border-payzoona-blue/30 top-1/2 left-full hidden lg:block"></div>
               </div>
-              <h3 className="text-lg font-semibold mb-2">Setup Integration</h3>
+              <h3 className="text-lg font-semibold mb-2">We Setup Integration</h3>
               <p className="text-gray-600">
-                Use our documentation to integrate the payment gateway into your website or app.
+                Our developer team handles the entire integration process for you. No coding required.
               </p>
             </div>
             
@@ -213,7 +246,7 @@ const Home = () => {
               </div>
               <h3 className="text-lg font-semibold mb-2">Test Transactions</h3>
               <p className="text-gray-600">
-                Test the payment flow in our sandbox environment to ensure everything works.
+                Test the payment flow with our support to ensure everything works perfectly.
               </p>
             </div>
             
@@ -230,8 +263,11 @@ const Home = () => {
         </div>
       </section>
       
+      {/* FAQ Section */}
+      <FaqSection bgColor="bg-gray-50" faqs={homeFaqs} />
+      
       {/* Call To Action */}
-      <section className="section bg-gray-50">
+      <section className="section bg-white">
         <div className="container-custom">
           <CallToAction
             title="Ready to power your payments in Bangladesh?"

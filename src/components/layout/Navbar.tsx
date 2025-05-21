@@ -27,8 +27,6 @@ const Navbar = () => {
             <Link to="/services" className="text-gray-700 hover:text-payzoona-blue font-medium transition-colors">Services</Link>
             <Link to="/developers" className="text-gray-700 hover:text-payzoona-blue font-medium transition-colors">Developers</Link>
             <Link to="/pricing" className="text-gray-700 hover:text-payzoona-blue font-medium transition-colors">Pricing</Link>
-            <Link to="/onboarding" className="text-gray-700 hover:text-payzoona-blue font-medium transition-colors">Get Started</Link>
-            <Link to="/faqs" className="text-gray-700 hover:text-payzoona-blue font-medium transition-colors">FAQs</Link>
             <Link to="/contact" className="text-gray-700 hover:text-payzoona-blue font-medium transition-colors">Contact</Link>
           </nav>
 
@@ -64,8 +62,6 @@ const Navbar = () => {
             <Link to="/services" onClick={toggleMenu} className="block text-gray-700 hover:text-payzoona-blue font-medium transition-colors">Services</Link>
             <Link to="/developers" onClick={toggleMenu} className="block text-gray-700 hover:text-payzoona-blue font-medium transition-colors">Developers</Link>
             <Link to="/pricing" onClick={toggleMenu} className="block text-gray-700 hover:text-payzoona-blue font-medium transition-colors">Pricing</Link>
-            <Link to="/onboarding" onClick={toggleMenu} className="block text-gray-700 hover:text-payzoona-blue font-medium transition-colors">Get Started</Link>
-            <Link to="/faqs" onClick={toggleMenu} className="block text-gray-700 hover:text-payzoona-blue font-medium transition-colors">FAQs</Link>
             <Link to="/contact" onClick={toggleMenu} className="block text-gray-700 hover:text-payzoona-blue font-medium transition-colors">Contact</Link>
           </nav>
           <div className="flex flex-col space-y-3">

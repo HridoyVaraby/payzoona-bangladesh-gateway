@@ -10,7 +10,6 @@ import Services from "./pages/Services";
 import Developers from "./pages/Developers";
 import Pricing from "./pages/Pricing";
 import Onboarding from "./pages/Onboarding";
-import Faqs from "./pages/Faqs";
 import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
 
@@ -29,7 +28,6 @@ const App = () => (
           <Route path="/developers" element={<Developers />} />
           <Route path="/pricing" element={<Pricing />} />
           <Route path="/onboarding" element={<Onboarding />} />
-          <Route path="/faqs" element={<Faqs />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
