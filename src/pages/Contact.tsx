@@ -103,28 +103,7 @@ const Contact = () => {
         </div>
       </section>
       
-      {/* Map Section */}
-      <section className="section bg-gray-50">
-        <div className="container-custom">
-          <SectionHeader
-            title="Find Us"
-            subtitle="Our office is located in the heart of Dhaka's business district."
-            centered
-          />
-          
-          <div className="mt-8 rounded-xl overflow-hidden shadow-lg">
-            {/* In a real implementation, this would be an actual Google Maps embed */}
-            <div className="h-96 bg-gray-200 w-full flex items-center justify-center relative">
-              <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: 'url(/placeholder.svg)', opacity: 0.3 }}></div>
-              <div className="text-center z-10">
-                <h3 className="font-bold text-xl mb-2">Google Maps</h3>
-                <p>This would be an interactive Google Map in a production environment</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      
+
       {/* Follow Us */}
       <section className="section bg-white">
         <div className="container-custom">
