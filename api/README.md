@@ -24,12 +24,20 @@ public_html/
 - Extensions: curl, mbstring, openssl, json
 
 ### 3. PHPMailer Setup
-If PHPMailer is not working on your server:
+The test.php output shows PHPMailer is not available. Install it using Composer:
 
 ```bash
-# Run these commands in the api directory on your server
+# Navigate to the api directory on your server
+cd /path/to/your/api
+
+# Install PHPMailer and its dependencies
 composer install
+
+# If composer.json doesn't exist or is outdated, run:
+composer require phpmailer/phpmailer
 ```
+
+**Verify Installation**: After installation, run the test.php script again by visiting `yourdomain.com/api/test.php` to confirm PHPMailer is now available. The `phpmailer_available` value should change to `true`.
 
 ### 4. Permissions
 Ensure proper permissions:
@@ -49,8 +57,10 @@ If you encounter a 500 error:
 
 #### Common Issues
 - **500 Error**: Usually indicates a PHP configuration issue or missing dependencies
+- **PHPMailer Not Available**: Run `composer install` in the api directory as described above
 - **SMTP Connection Error**: Check your SMTP credentials and server settings
 - **File Permission Issues**: Ensure proper permissions as outlined above
+- **Composer Not Installed**: If composer is not available on your server, install it or use the [Composer installation guide](https://getcomposer.org/download/)
 
 #### SMTP Configuration
 Update the SMTP settings in `send-email.php` to match your hosting environment:
