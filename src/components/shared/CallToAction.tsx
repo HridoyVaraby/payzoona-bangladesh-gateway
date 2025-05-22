@@ -43,7 +43,7 @@ const CallToAction = ({
         <div className="flex flex-wrap gap-4 justify-center">
           <Link to={primaryButtonLink}>
             <Button className={gradient 
-              ? "bg-white text-payzoona-indigo hover:bg-gray-100 shadow-soft hover:shadow-soft-lg rounded-full px-8 py-6 text-lg font-semibold" 
+              ? "bg-white text-payzoona-teal hover:bg-gray-100 shadow-soft hover:shadow-soft-lg rounded-full px-8 py-6 text-lg font-semibold" 
               : "bg-gradient-primary shadow-soft hover:shadow-soft-lg hover:brightness-110 rounded-full px-8 py-6 text-lg font-semibold"
             }>
               {primaryButtonText}

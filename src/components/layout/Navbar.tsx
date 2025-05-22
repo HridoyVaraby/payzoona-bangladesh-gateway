@@ -18,19 +18,19 @@ const Navbar = () => {
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2">
             <img src="/payzoona_icon.svg" alt="Payzoona Logo" className="w-8 h-8" />
-            <div className="font-bold text-2xl text-[#198664] font-inter">
+            <div className="font-bold text-2xl text-payzoona-teal font-inter">
               Payzoona<span className="text-sm align-bottom">.com</span>
             </div>
           </Link>
           
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center space-x-8">
-            <Link to="/" className="text-gray-700 hover:text-payzoona-blue font-medium transition-colors">Home</Link>
-            <Link to="/about" className="text-gray-700 hover:text-payzoona-blue font-medium transition-colors">About Us</Link>
-            <Link to="/services" className="text-gray-700 hover:text-payzoona-blue font-medium transition-colors">Services</Link>
-            <Link to="/developers" className="text-gray-700 hover:text-payzoona-blue font-medium transition-colors">Developers</Link>
-            <Link to="/pricing" className="text-gray-700 hover:text-payzoona-blue font-medium transition-colors">Pricing</Link>
-            <Link to="/contact" className="text-gray-700 hover:text-payzoona-blue font-medium transition-colors">Contact</Link>
+            <Link to="/" className="text-gray-700 hover:text-payzoona-teal font-medium transition-colors">Home</Link>
+            <Link to="/about" className="text-gray-700 hover:text-payzoona-teal font-medium transition-colors">About Us</Link>
+            <Link to="/services" className="text-gray-700 hover:text-payzoona-teal font-medium transition-colors">Services</Link>
+            <Link to="/developers" className="text-gray-700 hover:text-payzoona-teal font-medium transition-colors">Developers</Link>
+            <Link to="/pricing" className="text-gray-700 hover:text-payzoona-teal font-medium transition-colors">Pricing</Link>
+            <Link to="/contact" className="text-gray-700 hover:text-payzoona-teal font-medium transition-colors">Contact</Link>
           </nav>
 
           {/* Action Buttons - Desktop */}
@@ -60,12 +60,12 @@ const Navbar = () => {
       {isMenuOpen && (
         <div className="lg:hidden py-4 px-6 border-t border-gray-100 bg-white">
           <nav className="space-y-4 pb-5">
-            <Link to="/" onClick={toggleMenu} className="block text-gray-700 hover:text-payzoona-blue font-medium transition-colors">Home</Link>
-            <Link to="/about" onClick={toggleMenu} className="block text-gray-700 hover:text-payzoona-blue font-medium transition-colors">About Us</Link>
-            <Link to="/services" onClick={toggleMenu} className="block text-gray-700 hover:text-payzoona-blue font-medium transition-colors">Services</Link>
-            <Link to="/developers" onClick={toggleMenu} className="block text-gray-700 hover:text-payzoona-blue font-medium transition-colors">Developers</Link>
-            <Link to="/pricing" onClick={toggleMenu} className="block text-gray-700 hover:text-payzoona-blue font-medium transition-colors">Pricing</Link>
-            <Link to="/contact" onClick={toggleMenu} className="block text-gray-700 hover:text-payzoona-blue font-medium transition-colors">Contact</Link>
+            <Link to="/" onClick={toggleMenu} className="block text-gray-700 hover:text-payzoona-teal font-medium transition-colors">Home</Link>
+            <Link to="/about" onClick={toggleMenu} className="block text-gray-700 hover:text-payzoona-teal font-medium transition-colors">About Us</Link>
+            <Link to="/services" onClick={toggleMenu} className="block text-gray-700 hover:text-payzoona-teal font-medium transition-colors">Services</Link>
+            <Link to="/developers" onClick={toggleMenu} className="block text-gray-700 hover:text-payzoona-teal font-medium transition-colors">Developers</Link>
+            <Link to="/pricing" onClick={toggleMenu} className="block text-gray-700 hover:text-payzoona-teal font-medium transition-colors">Pricing</Link>
+            <Link to="/contact" onClick={toggleMenu} className="block text-gray-700 hover:text-payzoona-teal font-medium transition-colors">Contact</Link>
           </nav>
           <div className="flex flex-col space-y-3">
             <a href="https://wa.me/8801301100382" target="_blank" rel="noopener noreferrer" onClick={toggleMenu}>

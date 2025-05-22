@@ -1,4 +1,3 @@
-
 import type { Config } from "tailwindcss";
 
 export default {
@@ -54,11 +53,10 @@ export default {
 					foreground: 'hsl(var(--card-foreground))'
 				},
         payzoona: {
-          blue: '#2563EB',
-          indigo: '#3730A3',
+          teal: '#196864',
+          green: '#1bd48c',
           gray: '#F9FAFB',
           'text-gray': '#4B5563',
-          'dark-blue': '#1E40AF',
         },
 				sidebar: {
 					DEFAULT: 'hsl(var(--sidebar-background))',
@@ -128,10 +126,10 @@ export default {
         'space-grotesk': ['Space Grotesk', 'sans-serif'],
       },
 			backgroundImage: {
-				'gradient-primary': 'linear-gradient(to right, #2563EB, #3730A3)',
-				'gradient-subtle': 'linear-gradient(to right, rgba(37, 99, 235, 0.1), rgba(55, 48, 163, 0.1))',
+				'gradient-primary': 'linear-gradient(to right, #196864, #1bd48c)',
+				'gradient-subtle': 'linear-gradient(to right, rgba(25, 104, 100, 0.1), rgba(27, 212, 140, 0.1))',
 				'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-				'gradient-dots': 'url("data:image/svg+xml,%3Csvg width="20" height="20" xmlns="http://www.w3.org/2000/svg"%3E%3Ccircle cx="2" cy="2" r="1" fill="%232563EB" fill-opacity="0.1"/%3E%3C/svg%3E")',
+				'gradient-dots': 'url("data:image/svg+xml,%3Csvg width="20" height="20" xmlns="http://www.w3.org/2000/svg"%3E%3Ccircle cx="2" cy="2" r="1" fill="%23196864" fill-opacity="0.1"/%3E%3C/svg%3E")',
 			}
 		}
 	},
