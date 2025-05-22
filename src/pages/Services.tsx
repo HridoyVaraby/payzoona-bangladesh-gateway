@@ -91,7 +91,7 @@ const Services = () => {
                   <span>Total Amount:</span>
                   <span className="font-bold">৳5,500 BDT</span>
                 </div>
-                <button className="bg-white text-payzoona-indigo w-full py-2 rounded font-medium">
+                <button className="bg-white text-black w-full py-2 rounded font-medium">
                   Pay Now
                 </button>
               </div>
@@ -234,7 +234,7 @@ const Services = () => {
                   <div className="bg-gradient-primary text-white rounded-lg p-4">
                     <div className="flex items-center justify-between mb-2">
                       <span className="font-medium">Premium Plan</span>
-                      <span className="bg-white text-payzoona-indigo text-xs px-2 py-1 rounded font-medium">Active</span>
+                      <span className="bg-white text-black text-xs px-2 py-1 rounded font-medium">Active</span>
                     </div>
                     <div className="flex justify-between items-baseline mb-3">
                       <span className="font-bold text-xl">৳1,200</span>
