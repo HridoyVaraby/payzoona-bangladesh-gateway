@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { useToast } from '@/hooks/use-toast';
+import { supabase } from '@/integrations/supabase/client';
 
 const ContactForm = () => {
   const { toast } = useToast();
@@ -29,50 +30,39 @@ const ContactForm = () => {
     setIsSubmitting(true);
     
     try {
-      // Use relative path for production environment
-      const response = await fetch('./api/send-email.php', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
+      // Insert into Supabase
+      const { error } = await supabase.from('contact_submissions').insert({
+        name: formData.name,
+        email: formData.email,
+        company: formData.company || null,
+        phone: formData.phone || null,
+        message: formData.message
+      });
+
+      if (error) {
+        throw new Error(error.message);
+      }
+      
+      toast({
+        title: "Message sent",
+        description: "We've received your message and will get back to you shortly.",
       });
       
-      // Clone the response before reading it to avoid the stream already read error
-      const responseClone = response.clone();
-      
-      let data;
-      try {
-        data = await response.json();
-      } catch (parseError) {
-        // Handle JSON parsing errors by using the cloned response
-        const text = await responseClone.text();
-        console.error('Failed to parse response as JSON:', text);
-        throw new Error('Server returned an invalid response. Please try again later.');
-      }
-      
-      if (data.success) {
-        toast({
-          title: "Message sent",
-          description: "We've received your message and will get back to you shortly.",
-        });
-        // Reset form
-        setFormData({
-          name: '',
-          company: '',
-          email: '',
-          phone: '',
-          message: ''
-        });
-      } else {
-        throw new Error(data.error || 'Failed to send message');
-      }
+      // Reset form
+      setFormData({
+        name: '',
+        company: '',
+        email: '',
+        phone: '',
+        message: ''
+      });
     } catch (error) {
       toast({
         title: "Error",
         description: error instanceof Error ? error.message : "Something went wrong. Please try again later.",
         variant: "destructive"
       });
+      console.error('Contact form submission error:', error);
     } finally {
       setIsSubmitting(false);
     }
