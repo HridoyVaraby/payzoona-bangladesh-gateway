@@ -3,7 +3,7 @@ import React from 'react';
 import Layout from '@/components/layout/Layout';
 import SectionHeader from '@/components/shared/SectionHeader';
 import { Separator } from '@/components/ui/separator';
-import { Shield, LockKeyhole, FileShield } from 'lucide-react';
+import { Shield, LockKeyhole, File } from 'lucide-react';
 
 const Security = () => {
   return (
@@ -37,7 +37,7 @@ const Security = () => {
             
             <div className="bg-white p-6 rounded-xl shadow-soft border border-gray-100 text-center">
               <div className="mx-auto w-12 h-12 bg-payzoona-blue/10 flex items-center justify-center rounded-full mb-4">
-                <FileShield className="w-6 h-6 text-payzoona-blue" />
+                <File className="w-6 h-6 text-payzoona-blue" />
               </div>
               <h3 className="font-semibold text-lg mb-2">Fraud Prevention</h3>
               <p className="text-gray-600 text-sm">Advanced fraud detection systems to protect you and your customers from fraudulent transactions.</p>

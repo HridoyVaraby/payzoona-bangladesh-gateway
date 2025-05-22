@@ -4,10 +4,11 @@ import React, { useEffect, useRef } from 'react';
 interface SectionHeaderProps {
   title: string;
   subtitle?: string;
+  description?: string;
   centered?: boolean;
 }
 
-const SectionHeader = ({ title, subtitle, centered = false }: SectionHeaderProps) => {
+const SectionHeader = ({ title, subtitle, description, centered = false }: SectionHeaderProps) => {
   const headerRef = useRef<HTMLDivElement>(null);
   
   useEffect(() => {
@@ -30,6 +31,11 @@ const SectionHeader = ({ title, subtitle, centered = false }: SectionHeaderProps
       {subtitle && (
         <p className={`text-lg text-gray-600 mt-4 leading-relaxed ${centered ? 'mx-auto' : ''} max-w-2xl`}>
           {subtitle}
+        </p>
+      )}
+      {description && (
+        <p className={`text-base text-gray-500 mt-2 ${centered ? 'mx-auto' : ''} max-w-2xl`}>
+          {description}
         </p>
       )}
     </div>
