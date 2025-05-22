@@ -11,8 +11,9 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
           {/* Company Info */}
           <div className="lg:col-span-2">
-            <Link to="/" className="inline-block mb-4">
-              <div className="font-bold text-2xl text-payzoona-indigo font-space-grotesk">Payzoona</div>
+            <Link to="/" className="inline-flex items-center space-x-2 mb-4">
+              <img src="/payzoona_icon.svg" alt="Payzoona Logo" className="w-8 h-8" />
+              <div className="font-bold text-2xl text-[#198664] font-space-grotesk">Payzoona<span className="text-sm align-bottom">.com</span></div>
             </Link>
             <p className="text-gray-600 mb-6 max-w-md">
               Accept payments in BDT, receive settlements in your preferred currency. 
