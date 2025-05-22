@@ -18,7 +18,7 @@ const Navbar = () => {
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2">
             <img src="/payzoona_icon.svg" alt="Payzoona Logo" className="w-8 h-8" />
-            <div className="font-bold text-2xl text-[#198664] font-space-grotesk">
+            <div className="font-bold text-2xl text-[#198664] font-inter">
               Payzoona<span className="text-sm align-bottom">.com</span>
             </div>
           </Link>
