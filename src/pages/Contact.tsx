@@ -64,7 +64,6 @@ const Contact = () => {
                   </div>
                 </div>
                 
-                {/* Call Us section commented out as requested
                 <div className="flex items-start">
                   <div className="bg-payzoona-blue/10 p-2 rounded-full mr-4">
                     <Phone className="h-6 w-6 text-payzoona-blue" />
@@ -79,7 +78,6 @@ const Contact = () => {
                     </p>
                   </div>
                 </div>
-                */}
               </div>
               
               <div className="mt-12">
