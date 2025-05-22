@@ -17,7 +17,10 @@ const Navbar = () => {
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2">
-            <div className="font-bold text-2xl text-payzoona-indigo font-space-grotesk">Payzoona</div>
+            <img src="/payzoona_icon.svg" alt="Payzoona Logo" className="w-8 h-8" />
+            <div className="font-bold text-2xl text-payzoona-indigo font-space-grotesk">
+              Payzoona<span className="text-sm align-top">.com</span>
+            </div>
           </Link>
           
           {/* Desktop Navigation */}
