@@ -34,7 +34,7 @@ const Navbar = () => {
 
           {/* Action Buttons - Desktop */}
           <div className="hidden lg:flex items-center space-x-4">
-            <Link to="/onboarding">
+            <Link to="/contact">
               <Button className="bg-gradient-primary hover:brightness-110 rounded-full">Get Started</Button>
             </Link>
           </div>
