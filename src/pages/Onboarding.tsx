@@ -5,20 +5,62 @@ import SectionHeader from '../components/shared/SectionHeader';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
-import { Calendar, CheckCircle, Code } from 'lucide-react';
+import { Calendar, CheckCircle, Code, FileText, User, Globe, Banknote } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
+import { supabase } from '@/integrations/supabase/client';
 
 const Onboarding = () => {
   const { toast } = useToast();
   
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     
-    // This would submit the form to your backend in a real application
-    toast({
-      title: "Application received!",
-      description: "We'll review your information and get back to you shortly.",
-    });
+    const formData = new FormData(e.currentTarget);
+    const formValues = {
+      businessName: formData.get('businessName') as string,
+      website: formData.get('website') as string,
+      contactName: formData.get('contactName') as string,
+      email: formData.get('email') as string,
+      phone: formData.get('phone') as string,
+      businessType: formData.get('businessType') as string,
+      volume: formData.get('volume') as string,
+      businessDescription: formData.get('businessDescription') as string,
+      currency: formData.get('currency') as string,
+    };
+    
+    try {
+      const { error } = await supabase
+        .from('merchant_applications')
+        .insert({
+          business_name: formValues.businessName,
+          website: formValues.website,
+          contact_name: formValues.contactName,
+          email: formValues.email,
+          phone: formValues.phone,
+          business_type: formValues.businessType,
+          monthly_volume: formValues.volume,
+          business_description: formValues.businessDescription,
+          settlement_currency: formValues.currency
+        });
+        
+      if (error) throw error;
+      
+      toast({
+        title: "Application received!",
+        description: "We'll review your information and get back to you shortly.",
+      });
+      
+      // Reset form
+      e.currentTarget.reset();
+      
+    } catch (error) {
+      console.error('Error submitting application:', error);
+      toast({
+        title: "Submission failed",
+        description: "There was an error submitting your application. Please try again.",
+        variant: "destructive"
+      });
+    }
   };
   
   return (
@@ -55,11 +97,9 @@ const Onboarding = () => {
               <p className="text-gray-600 mb-6">
                 Complete our merchant application form with your business details and documentation.
               </p>
-              <img 
-                src="/placeholder.svg"
-                alt="Registration illustration"
-                className="w-16 h-16 mx-auto mb-4"
-              />
+              <div className="w-16 h-16 mx-auto mb-4 bg-gray-100 rounded-full flex items-center justify-center">
+                <FileText className="w-8 h-8 text-payzoona-blue" />
+              </div>
               <p className="text-sm text-gray-500">Estimated time: 10 minutes</p>
             </div>
             
@@ -72,11 +112,9 @@ const Onboarding = () => {
               <p className="text-gray-600 mb-6">
                 Our team will review your application and verify your business information.
               </p>
-              <img 
-                src="/placeholder.svg"
-                alt="Verification illustration"
-                className="w-16 h-16 mx-auto mb-4"
-              />
+              <div className="w-16 h-16 mx-auto mb-4 bg-gray-100 rounded-full flex items-center justify-center">
+                <User className="w-8 h-8 text-payzoona-indigo" />
+              </div>
               <p className="text-sm text-gray-500">Estimated time: 1-3 business days</p>
             </div>
             
@@ -88,11 +126,9 @@ const Onboarding = () => {
               <p className="text-gray-600 mb-6">
                 Once approved, integrate our payment solution using our API or plugins.
               </p>
-              <img 
-                src="/placeholder.svg"
-                alt="Integration illustration"
-                className="w-16 h-16 mx-auto mb-4"
-              />
+              <div className="w-16 h-16 mx-auto mb-4 bg-gray-100 rounded-full flex items-center justify-center">
+                <Code className="w-8 h-8 text-payzoona-blue" />
+              </div>
               <p className="text-sm text-gray-500">Estimated time: 1-5 hours</p>
             </div>
           </div>
@@ -155,36 +191,36 @@ const Onboarding = () => {
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div className="space-y-2">
                       <label htmlFor="businessName" className="text-sm font-medium text-gray-700">Business Name</label>
-                      <Input id="businessName" placeholder="Your company name" required />
+                      <Input id="businessName" name="businessName" placeholder="Your company name" required />
                     </div>
                     
                     <div className="space-y-2">
                       <label htmlFor="website" className="text-sm font-medium text-gray-700">Website</label>
-                      <Input id="website" placeholder="https://yourwebsite.com" required />
+                      <Input id="website" name="website" placeholder="https://yourwebsite.com" required />
                     </div>
                   </div>
                   
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div className="space-y-2">
                       <label htmlFor="contactName" className="text-sm font-medium text-gray-700">Contact Person</label>
-                      <Input id="contactName" placeholder="Full name" required />
+                      <Input id="contactName" name="contactName" placeholder="Full name" required />
                     </div>
                     
                     <div className="space-y-2">
                       <label htmlFor="email" className="text-sm font-medium text-gray-700">Business Email</label>
-                      <Input id="email" type="email" placeholder="your@email.com" required />
+                      <Input id="email" name="email" type="email" placeholder="your@email.com" required />
                     </div>
                   </div>
                   
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div className="space-y-2">
                       <label htmlFor="phone" className="text-sm font-medium text-gray-700">Phone Number</label>
-                      <Input id="phone" placeholder="Including country code" required />
+                      <Input id="phone" name="phone" placeholder="Including country code" required />
                     </div>
                     
                     <div className="space-y-2">
                       <label htmlFor="businessType" className="text-sm font-medium text-gray-700">Business Type</label>
-                      <select id="businessType" className="w-full border border-gray-300 rounded-md p-2">
+                      <select id="businessType" name="businessType" className="w-full border border-gray-300 rounded-md p-2" required>
                         <option value="">Select business type</option>
                         <option value="ecommerce">E-commerce</option>
                         <option value="saas">SaaS/Subscription</option>
@@ -197,7 +233,7 @@ const Onboarding = () => {
                   
                   <div className="space-y-2">
                     <label htmlFor="volume" className="text-sm font-medium text-gray-700">Estimated Monthly Volume (BDT)</label>
-                    <select id="volume" className="w-full border border-gray-300 rounded-md p-2">
+                    <select id="volume" name="volume" className="w-full border border-gray-300 rounded-md p-2" required>
                       <option value="">Select monthly volume</option>
                       <option value="less50k">Less than ৳50,000</option>
                       <option value="50k-200k">৳50,000 - ৳2,00,000</option>
@@ -209,27 +245,31 @@ const Onboarding = () => {
                   
                   <div className="space-y-2">
                     <label htmlFor="businessDescription" className="text-sm font-medium text-gray-700">Business Description</label>
-                    <Textarea id="businessDescription" placeholder="Tell us about your business and how you plan to use Payzoona" rows={4} required />
+                    <Textarea id="businessDescription" name="businessDescription" placeholder="Tell us about your business and how you plan to use Payzoona" rows={4} required />
                   </div>
                   
                   <div className="space-y-2">
                     <label className="text-sm font-medium text-gray-700">Settlement Currency Preference</label>
                     <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
                       <div className="flex items-center">
-                        <input type="radio" id="bdt" name="currency" value="bdt" className="mr-2" />
+                        <input type="radio" id="bdt" name="currency" value="bdt" className="mr-2" required />
                         <label htmlFor="bdt">BDT</label>
                       </div>
                       <div className="flex items-center">
-                        <input type="radio" id="usd" name="currency" value="usd" className="mr-2" />
+                        <input type="radio" id="usd" name="currency" value="usd" className="mr-2" required />
                         <label htmlFor="usd">USD</label>
                       </div>
                       <div className="flex items-center">
-                        <input type="radio" id="eur" name="currency" value="eur" className="mr-2" />
+                        <input type="radio" id="eur" name="currency" value="eur" className="mr-2" required />
                         <label htmlFor="eur">EUR</label>
                       </div>
                       <div className="flex items-center">
-                        <input type="radio" id="gbp" name="currency" value="gbp" className="mr-2" />
+                        <input type="radio" id="gbp" name="currency" value="gbp" className="mr-2" required />
                         <label htmlFor="gbp">GBP</label>
+                      </div>
+                      <div className="flex items-center">
+                        <input type="radio" id="crypto" name="currency" value="crypto" className="mr-2" required />
+                        <label htmlFor="crypto">Cryptocurrency</label>
                       </div>
                     </div>
                   </div>

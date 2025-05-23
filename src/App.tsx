@@ -24,6 +24,7 @@ import Security from "./pages/Security";
 // Admin Pages
 import Admin from "./pages/Admin";
 import Dashboard from "./pages/admin/Dashboard";
+import Applications from "./pages/admin/Applications";
 import ContactInfo from "./pages/admin/ContactInfo";
 import SocialMedia from "./pages/admin/SocialMedia";
 import Messages from "./pages/admin/Messages";
@@ -62,6 +63,7 @@ const App = () => (
               </ProtectedRoute>
             }>
               <Route path="dashboard" element={<Dashboard />} />
+              <Route path="applications" element={<Applications />} />
               <Route path="contact-info" element={<ContactInfo />} />
               <Route path="social-media" element={<SocialMedia />} />
               <Route path="messages" element={<Messages />} />

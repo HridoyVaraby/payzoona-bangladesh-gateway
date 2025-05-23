@@ -63,6 +63,51 @@ export type Database = {
         }
         Relationships: []
       }
+      merchant_applications: {
+        Row: {
+          business_description: string
+          business_name: string
+          business_type: string
+          contact_name: string
+          created_at: string | null
+          email: string
+          id: string
+          is_reviewed: boolean | null
+          monthly_volume: string
+          phone: string
+          settlement_currency: string
+          website: string
+        }
+        Insert: {
+          business_description: string
+          business_name: string
+          business_type: string
+          contact_name: string
+          created_at?: string | null
+          email: string
+          id?: string
+          is_reviewed?: boolean | null
+          monthly_volume: string
+          phone: string
+          settlement_currency: string
+          website: string
+        }
+        Update: {
+          business_description?: string
+          business_name?: string
+          business_type?: string
+          contact_name?: string
+          created_at?: string | null
+          email?: string
+          id?: string
+          is_reviewed?: boolean | null
+          monthly_volume?: string
+          phone?: string
+          settlement_currency?: string
+          website?: string
+        }
+        Relationships: []
+      }
       website_settings: {
         Row: {
           id: string

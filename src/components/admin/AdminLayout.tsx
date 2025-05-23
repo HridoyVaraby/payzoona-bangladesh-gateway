@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
 import { Link, Outlet, useLocation } from 'react-router-dom';
-import { Home, Settings, MessageSquare, LogOut } from 'lucide-react';
+import { Home, Settings, MessageSquare, LogOut, FileText } from 'lucide-react';
 import { useAuth } from '@/contexts/AuthContext';
 import { Button } from '@/components/ui/button';
 
@@ -12,9 +12,10 @@ const AdminLayout: React.FC = () => {
 
   const navLinks = [
     { name: 'Dashboard', path: '/admin/dashboard', icon: Home },
+    { name: 'Applications', path: '/admin/applications', icon: FileText },
+    { name: 'Messages', path: '/admin/messages', icon: MessageSquare },
     { name: 'Contact Info', path: '/admin/contact-info', icon: Settings },
     { name: 'Social Media', path: '/admin/social-media', icon: Settings },
-    { name: 'Messages', path: '/admin/messages', icon: MessageSquare },
   ];
 
   const isActive = (path: string) => {
