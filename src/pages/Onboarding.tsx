@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useState, useRef } from 'react';
 import Layout from '../components/layout/Layout';
 import SectionHeader from '../components/shared/SectionHeader';
 import { Button } from '@/components/ui/button';
@@ -7,13 +7,16 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Calendar, CheckCircle, Code, FileText, User, Globe, Banknote } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
+import { toast } from '@/components/ui/sonner';
 import { supabase } from '@/integrations/supabase/client';
 
 const Onboarding = () => {
-  const { toast } = useToast();
+  const formRef = useRef<HTMLFormElement>(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setIsSubmitting(true);
     
     const formData = new FormData(e.currentTarget);
     const formValues = {
@@ -45,21 +48,23 @@ const Onboarding = () => {
         
       if (error) throw error;
       
-      toast({
-        title: "Application received!",
+      toast("Application received!", {
         description: "We'll review your information and get back to you shortly.",
       });
       
-      // Reset form
-      e.currentTarget.reset();
+      // Reset form safely
+      if (formRef.current) {
+        formRef.current.reset();
+      }
       
     } catch (error) {
       console.error('Error submitting application:', error);
-      toast({
-        title: "Submission failed",
+      toast("Submission failed", {
         description: "There was an error submitting your application. Please try again.",
         variant: "destructive"
       });
+    } finally {
+      setIsSubmitting(false);
     }
   };
   
@@ -184,7 +189,7 @@ const Onboarding = () => {
             </div>
             
             <div>
-              <form onSubmit={handleSubmit} className="bg-white p-8 rounded-xl shadow-sm border border-gray-100">
+              <form ref={formRef} onSubmit={handleSubmit} className="bg-white p-8 rounded-xl shadow-sm border border-gray-100">
                 <h3 className="text-xl font-semibold mb-6">Merchant Application Form</h3>
                 
                 <div className="space-y-6">
@@ -274,8 +279,8 @@ const Onboarding = () => {
                     </div>
                   </div>
                   
-                  <Button type="submit" className="w-full bg-gradient-primary hover:brightness-110 rounded-full">
-                    Submit Application
+                  <Button type="submit" className="w-full bg-gradient-primary hover:brightness-110 rounded-full" disabled={isSubmitting}>
+                    {isSubmitting ? 'Submitting...' : 'Submit Application'}
                   </Button>
                   
                   <p className="text-sm text-gray-500 text-center">
