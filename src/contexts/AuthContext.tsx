@@ -12,6 +12,7 @@ type AuthContextType = {
   isAdmin: boolean;
   signIn: (email: string, password: string) => Promise<void>;
   signOut: () => Promise<void>;
+  checkingAdminStatus: boolean;
 };
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -21,6 +22,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const [user, setUser] = useState<User | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [isAdmin, setIsAdmin] = useState(false);
+  const [checkingAdminStatus, setCheckingAdminStatus] = useState(false);
   const { toast } = useToast();
   const navigate = useNavigate();
 
@@ -33,11 +35,13 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         
         // Check admin status after auth state changes
         if (currentSession?.user) {
+          setCheckingAdminStatus(true);
           setTimeout(() => {
             checkAdminStatus(currentSession.user.id);
           }, 0);
         } else {
           setIsAdmin(false);
+          setCheckingAdminStatus(false);
         }
       }
     );
@@ -49,10 +53,11 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       
       // Check admin status on initial load
       if (currentSession?.user) {
+        setCheckingAdminStatus(true);
         checkAdminStatus(currentSession.user.id);
+      } else {
+        setIsLoading(false);
       }
-      
-      setIsLoading(false);
     });
 
     return () => {
@@ -71,18 +76,21 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       if (error) {
         console.error('Error checking admin status:', error);
         setIsAdmin(false);
-        return;
+      } else {
+        setIsAdmin(!!data);
       }
-
-      setIsAdmin(!!data);
     } catch (error) {
       console.error('Error in admin check:', error);
       setIsAdmin(false);
+    } finally {
+      setCheckingAdminStatus(false);
+      setIsLoading(false);
     }
   };
 
   const signIn = async (email: string, password: string) => {
     try {
+      setIsLoading(true);
       const { data, error } = await supabase.auth.signInWithPassword({
         email,
         password,
@@ -94,6 +102,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
           description: error.message,
           variant: 'destructive',
         });
+        setIsLoading(false);
         return;
       }
 
@@ -102,7 +111,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
           title: 'Login successful',
           description: 'Welcome back!',
         });
-        navigate('/admin/dashboard');
+        // Navigation will happen after admin status is checked via onAuthStateChange
       }
     } catch (error) {
       console.error('Error signing in:', error);
@@ -111,6 +120,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         description: 'An unexpected error occurred',
         variant: 'destructive',
       });
+      setIsLoading(false);
     }
   };
 
@@ -141,6 +151,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         isAdmin,
         signIn,
         signOut,
+        checkingAdminStatus,
       }}
     >
       {children}

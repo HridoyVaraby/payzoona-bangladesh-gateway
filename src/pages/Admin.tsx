@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Navigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -9,7 +9,7 @@ const Admin: React.FC = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const { signIn, user, isAdmin } = useAuth();
+  const { signIn, user, isAdmin, isLoading, checkingAdminStatus } = useAuth();
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -20,6 +20,17 @@ const Admin: React.FC = () => {
       setIsSubmitting(false);
     }
   };
+
+  if (isLoading || checkingAdminStatus) {
+    return (
+      <div className="flex items-center justify-center h-screen">
+        <div className="flex flex-col items-center gap-4">
+          <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-payzoona-teal"></div>
+          <p className="text-payzoona-teal">Loading...</p>
+        </div>
+      </div>
+    );
+  }
 
   // Redirect to dashboard if already logged in and is admin
   if (user && isAdmin) {

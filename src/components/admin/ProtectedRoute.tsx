@@ -9,15 +9,15 @@ interface ProtectedRouteProps {
 }
 
 const ProtectedRoute = ({ children, requireAdmin = true }: ProtectedRouteProps) => {
-  const { user, isLoading, isAdmin } = useAuth();
+  const { user, isLoading, isAdmin, checkingAdminStatus } = useAuth();
   const location = useLocation();
 
   useEffect(() => {
     // Console log for debugging authentication state
-    console.log('Auth state in protected route:', { user, isLoading, isAdmin });
-  }, [user, isLoading, isAdmin]);
+    console.log('Auth state in protected route:', { user, isLoading, isAdmin, checkingAdminStatus });
+  }, [user, isLoading, isAdmin, checkingAdminStatus]);
 
-  if (isLoading) {
+  if (isLoading || checkingAdminStatus) {
     return (
       <div className="flex items-center justify-center h-screen">
         <div className="flex flex-col items-center gap-4">
