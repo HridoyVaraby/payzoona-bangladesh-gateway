@@ -1,3 +1,4 @@
+
 import { useQuery } from '@tanstack/react-query';
 import { supabase } from '@/integrations/supabase/client';
 
@@ -22,11 +23,15 @@ export const useSocialMedia = () => {
         .single();
 
       if (error) {
-        throw new Error(error.message);
+        console.error('Error fetching social media:', error);
+        // Return default/empty values if there's an error
+        return {};
       }
 
-      return data.setting_value as SocialMediaLinks;
+      return data?.setting_value as SocialMediaLinks || {};
     },
+    retry: 1,
+    staleTime: 5 * 60 * 1000, // 5 minutes
   });
 
   return {

@@ -1,3 +1,4 @@
+
 import { useQuery } from '@tanstack/react-query';
 import { supabase } from '@/integrations/supabase/client';
 
@@ -19,19 +20,33 @@ export const useContactInfo = () => {
         .single();
 
       if (error) {
-        throw new Error(error.message);
+        console.error('Error fetching contact info:', error);
+        // Return default values if there's an error
+        return {
+          phone: '',
+          email: 'info@payzoona.com',
+          address: 'Visit our office for more information',
+          business_hours: 'Monday - Friday: 9:00 AM - 6:00 PM\nSaturday: 10:00 AM - 4:00 PM\nSunday: Closed'
+        };
       }
 
-      return data.setting_value as ContactInfo;
+      return data?.setting_value as ContactInfo || {
+        phone: '',
+        email: 'info@payzoona.com',
+        address: 'Visit our office for more information',
+        business_hours: 'Monday - Friday: 9:00 AM - 6:00 PM\nSaturday: 10:00 AM - 4:00 PM\nSunday: Closed'
+      };
     },
+    retry: 1,
+    staleTime: 5 * 60 * 1000, // 5 minutes
   });
 
   return {
     contactInfo: data || {
       phone: '',
-      email: '',
-      address: '',
-      business_hours: ''
+      email: 'info@payzoona.com',
+      address: 'Visit our office for more information',
+      business_hours: 'Monday - Friday: 9:00 AM - 6:00 PM\nSaturday: 10:00 AM - 4:00 PM\nSunday: Closed'
     },
     isLoading,
     error,
