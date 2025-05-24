@@ -19,7 +19,7 @@ const Unauthorized: React.FC = () => {
         </p>
         <div className="mt-6 flex flex-col space-y-3">
           <Button asChild className="bg-gradient-primary hover:brightness-110">
-            <Link to="/admin">Go to Login</Link>
+            <Link to="/pz-auth">Go to Login</Link>
           </Button>
           <Button variant="outline" asChild>
             <Link to="/">Return to Homepage</Link>

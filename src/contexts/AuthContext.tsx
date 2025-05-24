@@ -1,4 +1,3 @@
-
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { supabase } from '@/integrations/supabase/client';
 import { Session, User } from '@supabase/supabase-js';
@@ -131,7 +130,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         title: 'Logged out',
         description: 'You have been successfully logged out',
       });
-      navigate('/admin');
+      navigate('/pz-auth');
     } catch (error) {
       console.error('Error signing out:', error);
       toast({

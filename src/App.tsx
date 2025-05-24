@@ -53,8 +53,8 @@ const App = () => (
             <Route path="/security" element={<Security />} />
             <Route path="/unauthorized" element={<Unauthorized />} />
             
-            {/* Admin Authentication */}
-            <Route path="/admin" element={<Admin />} />
+            {/* Admin Authentication - Changed from /admin to /pz-auth */}
+            <Route path="/pz-auth" element={<Admin />} />
             
             {/* Admin Dashboard - Protected Routes */}
             <Route path="/admin" element={

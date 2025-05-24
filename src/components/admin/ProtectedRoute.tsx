@@ -29,8 +29,8 @@ const ProtectedRoute = ({ children, requireAdmin = true }: ProtectedRouteProps) 
   }
 
   if (!user) {
-    // Redirect to login if not logged in
-    return <Navigate to="/admin" state={{ from: location }} replace />;
+    // Redirect to new login URL if not logged in
+    return <Navigate to="/pz-auth" state={{ from: location }} replace />;
   }
 
   if (requireAdmin && !isAdmin) {
