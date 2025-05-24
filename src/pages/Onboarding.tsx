@@ -1,3 +1,4 @@
+
 import React, { useState, useRef } from 'react';
 import Layout from '../components/layout/Layout';
 import SectionHeader from '../components/shared/SectionHeader';
@@ -46,34 +47,6 @@ const Onboarding = () => {
         });
         
       if (error) throw error;
-
-      // Send admin notification
-      try {
-        const { error: notificationError } = await supabase.functions.invoke('send-admin-notification', {
-          body: {
-            type: 'onboarding',
-            data: {
-              business_name: formValues.businessName,
-              website: formValues.website,
-              contact_name: formValues.contactName,
-              email: formValues.email,
-              phone: formValues.phone,
-              business_type: formValues.businessType,
-              monthly_volume: formValues.volume,
-              business_description: formValues.businessDescription,
-              settlement_currency: formValues.currency
-            }
-          }
-        });
-
-        if (notificationError) {
-          console.error('Failed to send admin notification:', notificationError);
-          // Don't throw error here as the main submission was successful
-        }
-      } catch (notificationError) {
-        console.error('Failed to send admin notification:', notificationError);
-        // Don't throw error here as the main submission was successful
-      }
       
       toast("Application received!", {
         description: "We'll review your information and get back to you shortly.",
@@ -88,6 +61,7 @@ const Onboarding = () => {
       console.error('Error submitting application:', error);
       toast("Submission failed", {
         description: "There was an error submitting your application. Please try again.",
+        variant: "destructive"
       });
     } finally {
       setIsSubmitting(false);
