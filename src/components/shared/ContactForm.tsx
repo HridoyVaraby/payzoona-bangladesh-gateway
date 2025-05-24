@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -41,6 +40,24 @@ const ContactForm = () => {
 
       if (error) {
         throw new Error(error.message);
+      }
+
+      // Send admin notification
+      try {
+        const { error: notificationError } = await supabase.functions.invoke('send-admin-notification', {
+          body: {
+            type: 'contact',
+            data: formData
+          }
+        });
+
+        if (notificationError) {
+          console.error('Failed to send admin notification:', notificationError);
+          // Don't throw error here as the main submission was successful
+        }
+      } catch (notificationError) {
+        console.error('Failed to send admin notification:', notificationError);
+        // Don't throw error here as the main submission was successful
       }
       
       toast({
