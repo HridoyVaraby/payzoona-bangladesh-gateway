@@ -57,7 +57,7 @@ const App = () => (
             <Route path="/pz-auth" element={<Admin />} />
             
             {/* Admin Dashboard - Protected Routes */}
-            <Route path="/admin" element={
+            <Route path="/admin-dashboard" element={
               <ProtectedRoute>
                 <AdminLayout />
               </ProtectedRoute>

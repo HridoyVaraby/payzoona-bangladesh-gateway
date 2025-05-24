@@ -1,3 +1,4 @@
+
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { supabase } from '@/integrations/supabase/client';
 import { Session, User } from '@supabase/supabase-js';
@@ -77,6 +78,10 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         setIsAdmin(false);
       } else {
         setIsAdmin(!!data);
+        // Navigate to admin dashboard after successful admin verification
+        if (data) {
+          navigate('/admin-dashboard/dashboard');
+        }
       }
     } catch (error) {
       console.error('Error in admin check:', error);
