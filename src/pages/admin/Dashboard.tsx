@@ -73,7 +73,7 @@ const Dashboard: React.FC = () => {
             <p className="text-sm text-gray-500">
               {unreadMessages} unread messages
             </p>
-            <Link to="/admin/messages">
+            <Link to="/admin-dashboard/messages">
               <Button variant="ghost" size="sm" className="flex items-center">
                 View <ArrowRight className="h-4 w-4 ml-1" />
               </Button>
@@ -98,7 +98,7 @@ const Dashboard: React.FC = () => {
             <p className="text-sm text-gray-500">
               {pendingApplications} pending review
             </p>
-            <Link to="/admin/applications">
+            <Link to="/admin-dashboard/applications">
               <Button variant="ghost" size="sm" className="flex items-center">
                 View <ArrowRight className="h-4 w-4 ml-1" />
               </Button>
@@ -118,7 +118,7 @@ const Dashboard: React.FC = () => {
             <p className="text-sm text-gray-500">
               Manage your website settings
             </p>
-            <Link to="/admin/contact-info">
+            <Link to="/admin-dashboard/contact-info">
               <Button variant="ghost" size="sm" className="flex items-center">
                 View <ArrowRight className="h-4 w-4 ml-1" />
               </Button>
@@ -130,16 +130,16 @@ const Dashboard: React.FC = () => {
       <div className="border rounded-lg p-4 bg-white">
         <h2 className="text-lg font-medium mb-4">Quick Actions</h2>
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-          <Link to="/admin/applications" className="block p-3 border rounded-md hover:bg-gray-50 transition-colors">
+          <Link to="/admin-dashboard/applications" className="block p-3 border rounded-md hover:bg-gray-50 transition-colors">
             Review Merchant Applications
           </Link>
-          <Link to="/admin/contact-info" className="block p-3 border rounded-md hover:bg-gray-50 transition-colors">
+          <Link to="/admin-dashboard/contact-info" className="block p-3 border rounded-md hover:bg-gray-50 transition-colors">
             Update Contact Information
           </Link>
-          <Link to="/admin/social-media" className="block p-3 border rounded-md hover:bg-gray-50 transition-colors">
+          <Link to="/admin-dashboard/social-media" className="block p-3 border rounded-md hover:bg-gray-50 transition-colors">
             Manage Social Media Links
           </Link>
-          <Link to="/admin/messages" className="block p-3 border rounded-md hover:bg-gray-50 transition-colors">
+          <Link to="/admin-dashboard/messages" className="block p-3 border rounded-md hover:bg-gray-50 transition-colors">
             View Contact Messages
           </Link>
         </div>

@@ -11,11 +11,11 @@ const AdminLayout: React.FC = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
 
   const navLinks = [
-    { name: 'Dashboard', path: '/admin/dashboard', icon: Home },
-    { name: 'Applications', path: '/admin/applications', icon: FileText },
-    { name: 'Messages', path: '/admin/messages', icon: MessageSquare },
-    { name: 'Contact Info', path: '/admin/contact-info', icon: Settings },
-    { name: 'Social Media', path: '/admin/social-media', icon: Settings },
+    { name: 'Dashboard', path: '/admin-dashboard/dashboard', icon: Home },
+    { name: 'Applications', path: '/admin-dashboard/applications', icon: FileText },
+    { name: 'Messages', path: '/admin-dashboard/messages', icon: MessageSquare },
+    { name: 'Contact Info', path: '/admin-dashboard/contact-info', icon: Settings },
+    { name: 'Social Media', path: '/admin-dashboard/social-media', icon: Settings },
   ];
 
   const isActive = (path: string) => {
@@ -61,7 +61,7 @@ const AdminLayout: React.FC = () => {
       >
         <div className="h-full flex flex-col">
           <div className="flex items-center justify-center h-16 px-4 border-b">
-            <Link to="/admin/dashboard" className="flex items-center space-x-2">
+            <Link to="/admin-dashboard/dashboard" className="flex items-center space-x-2">
               <img src="/payzoona_icon.svg" alt="Payzoona Logo" className="w-8 h-8" />
               <span className="text-xl font-semibold text-payzoona-teal">Admin Panel</span>
             </Link>

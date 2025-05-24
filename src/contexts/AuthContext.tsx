@@ -3,7 +3,7 @@ import React, { createContext, useContext, useState, useEffect } from 'react';
 import { supabase } from '@/integrations/supabase/client';
 import { Session, User } from '@supabase/supabase-js';
 import { useToast } from '@/hooks/use-toast';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 type AuthContextType = {
   session: Session | null;
@@ -23,8 +23,10 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const [isLoading, setIsLoading] = useState(true);
   const [isAdmin, setIsAdmin] = useState(false);
   const [checkingAdminStatus, setCheckingAdminStatus] = useState(false);
+  const [hasRedirectedOnLogin, setHasRedirectedOnLogin] = useState(false);
   const { toast } = useToast();
   const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     // Set up auth state listener first
@@ -37,11 +39,12 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         if (currentSession?.user) {
           setCheckingAdminStatus(true);
           setTimeout(() => {
-            checkAdminStatus(currentSession.user.id);
+            checkAdminStatus(currentSession.user.id, event === 'SIGNED_IN');
           }, 0);
         } else {
           setIsAdmin(false);
           setCheckingAdminStatus(false);
+          setHasRedirectedOnLogin(false);
         }
       }
     );
@@ -54,7 +57,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       // Check admin status on initial load
       if (currentSession?.user) {
         setCheckingAdminStatus(true);
-        checkAdminStatus(currentSession.user.id);
+        checkAdminStatus(currentSession.user.id, false);
       } else {
         setIsLoading(false);
       }
@@ -65,7 +68,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     };
   }, []);
 
-  const checkAdminStatus = async (userId: string) => {
+  const checkAdminStatus = async (userId: string, isNewLogin: boolean = false) => {
     try {
       const { data, error } = await supabase
         .from('admin_users')
@@ -78,8 +81,9 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         setIsAdmin(false);
       } else {
         setIsAdmin(!!data);
-        // Navigate to admin dashboard after successful admin verification
-        if (data) {
+        // Only navigate to admin dashboard on new login, not on every admin check
+        if (data && isNewLogin && !hasRedirectedOnLogin) {
+          setHasRedirectedOnLogin(true);
           navigate('/admin-dashboard/dashboard');
         }
       }
@@ -131,6 +135,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const signOut = async () => {
     try {
       await supabase.auth.signOut();
+      setHasRedirectedOnLogin(false);
       toast({
         title: 'Logged out',
         description: 'You have been successfully logged out',
