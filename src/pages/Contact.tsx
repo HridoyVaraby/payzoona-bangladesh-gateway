@@ -9,6 +9,7 @@ import { Mail, MapPin, Phone } from 'lucide-react';
 
 const Contact = () => {
   const { contactInfo, isLoading } = useContactInfo();
+  
   return (
     <Layout>
       {/* Hero Section */}
@@ -35,83 +36,107 @@ const Contact = () => {
               />
               
               <div className="space-y-8 mt-8">
-                <div className="flex items-start">
-                  <div className="bg-payzoona-blue/10 p-2 rounded-full mr-4">
-                    <MapPin className="h-6 w-6 text-payzoona-blue" />
+                {/* Address Section */}
+                {isLoading ? (
+                  <div className="flex items-start">
+                    <div className="bg-payzoona-blue/10 p-2 rounded-full mr-4">
+                      <MapPin className="h-6 w-6 text-payzoona-blue" />
+                    </div>
+                    <div>
+                      <h3 className="font-semibold text-lg mb-1">Visit Our Office</h3>
+                      <div className="space-y-2">
+                        <span className="block h-6 w-48 bg-gray-200 animate-pulse rounded"></span>
+                        <span className="block h-6 w-40 bg-gray-200 animate-pulse rounded"></span>
+                      </div>
+                    </div>
                   </div>
-                  <div>
-                    <h3 className="font-semibold text-lg mb-1">Visit Our Office</h3>
-                    <p className="text-gray-600">
-                      {isLoading ? (
-                        <span className="block h-12 w-48 bg-gray-200 animate-pulse rounded"></span>
-                      ) : (
-                        contactInfo.address.split('\n').map((line, index) => (
+                ) : contactInfo?.address ? (
+                  <div className="flex items-start">
+                    <div className="bg-payzoona-blue/10 p-2 rounded-full mr-4">
+                      <MapPin className="h-6 w-6 text-payzoona-blue" />
+                    </div>
+                    <div>
+                      <h3 className="font-semibold text-lg mb-1">Visit Our Office</h3>
+                      <p className="text-gray-600">
+                        {contactInfo.address.split('\n').map((line, index) => (
                           <React.Fragment key={index}>
                             {line}<br />
                           </React.Fragment>
-                        ))
-                      )}
-                    </p>
+                        ))}
+                      </p>
+                    </div>
                   </div>
-                </div>
+                ) : null}
                 
-                <div className="flex items-start">
-                  <div className="bg-payzoona-indigo/10 p-2 rounded-full mr-4">
-                    <Mail className="h-6 w-6 text-payzoona-indigo" />
+                {/* Email Section */}
+                {isLoading ? (
+                  <div className="flex items-start">
+                    <div className="bg-payzoona-indigo/10 p-2 rounded-full mr-4">
+                      <Mail className="h-6 w-6 text-payzoona-indigo" />
+                    </div>
+                    <div>
+                      <h3 className="font-semibold text-lg mb-1">Email Us</h3>
+                      <span className="block h-6 w-48 bg-gray-200 animate-pulse rounded"></span>
+                    </div>
                   </div>
-                  <div>
-                    <h3 className="font-semibold text-lg mb-1">Email Us</h3>
-                    {isLoading ? (
-                      <div className="space-y-2">
-                        <span className="block h-6 w-48 bg-gray-200 animate-pulse rounded"></span>
-                        <span className="block h-6 w-48 bg-gray-200 animate-pulse rounded"></span>
-                      </div>
-                    ) : (
+                ) : contactInfo?.email ? (
+                  <div className="flex items-start">
+                    <div className="bg-payzoona-indigo/10 p-2 rounded-full mr-4">
+                      <Mail className="h-6 w-6 text-payzoona-indigo" />
+                    </div>
+                    <div>
+                      <h3 className="font-semibold text-lg mb-1">Email Us</h3>
                       <p className="text-gray-600">
                         <a href={`mailto:${contactInfo.email}`} className="text-payzoona-blue">
                           {contactInfo.email}
                         </a>
                       </p>
-                    )}
+                    </div>
                   </div>
-                </div>
-                
-                {/* Call Us section commented out as requested
-                <div className="flex items-start">
-                  <div className="bg-payzoona-blue/10 p-2 rounded-full mr-4">
-                    <Phone className="h-6 w-6 text-payzoona-blue" />
+                ) : null}
+
+                {/* Phone Section - only show if phone exists */}
+                {!isLoading && contactInfo?.phone && (
+                  <div className="flex items-start">
+                    <div className="bg-payzoona-blue/10 p-2 rounded-full mr-4">
+                      <Phone className="h-6 w-6 text-payzoona-blue" />
+                    </div>
+                    <div>
+                      <h3 className="font-semibold text-lg mb-1">Call Us</h3>
+                      <p className="text-gray-600">
+                        <a href={`tel:${contactInfo.phone}`} className="text-payzoona-blue">
+                          {contactInfo.phone}
+                        </a>
+                      </p>
+                    </div>
                   </div>
-                  <div>
-                    <h3 className="font-semibold text-lg mb-1">Call Us</h3>
-                    <p className="text-gray-600 mb-1">
-                      Bangladesh: <a href="tel:+8809612345678" className="text-payzoona-blue">+880 9612-345678</a>
-                    </p>
-                    <p className="text-gray-600">
-                      International: <a href="tel:+18882345678" className="text-payzoona-blue">+1 (888) 234-5678</a>
-                    </p>
-                  </div>
-                </div>
-                */}
+                )}
               </div>
               
-              <div className="mt-12">
-                <h3 className="font-semibold text-lg mb-4">Business Hours</h3>
-                <div className="bg-gray-50 rounded-lg p-6">
-                  {isLoading ? (
+              {/* Business Hours Section */}
+              {isLoading ? (
+                <div className="mt-12">
+                  <h3 className="font-semibold text-lg mb-4">Business Hours</h3>
+                  <div className="bg-gray-50 rounded-lg p-6">
                     <div className="space-y-2">
                       <span className="block h-6 w-full bg-gray-200 animate-pulse rounded"></span>
                       <span className="block h-6 w-full bg-gray-200 animate-pulse rounded"></span>
                       <span className="block h-6 w-full bg-gray-200 animate-pulse rounded"></span>
                     </div>
-                  ) : (
-                    contactInfo.business_hours.split('\n').map((line, index) => (
+                  </div>
+                </div>
+              ) : contactInfo?.business_hours ? (
+                <div className="mt-12">
+                  <h3 className="font-semibold text-lg mb-4">Business Hours</h3>
+                  <div className="bg-gray-50 rounded-lg p-6">
+                    {contactInfo.business_hours.split('\n').map((line, index) => (
                       <p key={index} className={index < contactInfo.business_hours.split('\n').length - 1 ? "mb-2" : ""}>
                         {line}
                       </p>
-                    ))
-                  )}
+                    ))}
+                  </div>
                 </div>
-              </div>
+              ) : null}
             </div>
             
             <div>
@@ -124,8 +149,7 @@ const Contact = () => {
         </div>
       </section>
       
-
-      {/* Follow Us */}
+      {/* Follow Us - Only show if social media links exist */}
       <section className="section bg-white">
         <div className="container-custom">
           <SectionHeader

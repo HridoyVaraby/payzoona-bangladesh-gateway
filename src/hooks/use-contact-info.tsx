@@ -17,37 +17,21 @@ export const useContactInfo = () => {
         .from('website_settings')
         .select('setting_value')
         .eq('setting_key', 'contact_info')
-        .single();
+        .maybeSingle();
 
       if (error) {
         console.error('Error fetching contact info:', error);
-        // Return default values if there's an error
-        return {
-          phone: '',
-          email: 'info@payzoona.com',
-          address: 'Visit our office for more information',
-          business_hours: 'Monday - Friday: 9:00 AM - 6:00 PM\nSaturday: 10:00 AM - 4:00 PM\nSunday: Closed'
-        };
+        return null;
       }
 
-      return data?.setting_value as ContactInfo || {
-        phone: '',
-        email: 'info@payzoona.com',
-        address: 'Visit our office for more information',
-        business_hours: 'Monday - Friday: 9:00 AM - 6:00 PM\nSaturday: 10:00 AM - 4:00 PM\nSunday: Closed'
-      };
+      return data?.setting_value as ContactInfo || null;
     },
     retry: 1,
     staleTime: 5 * 60 * 1000, // 5 minutes
   });
 
   return {
-    contactInfo: data || {
-      phone: '',
-      email: 'info@payzoona.com',
-      address: 'Visit our office for more information',
-      business_hours: 'Monday - Friday: 9:00 AM - 6:00 PM\nSaturday: 10:00 AM - 4:00 PM\nSunday: Closed'
-    },
+    contactInfo: data,
     isLoading,
     error,
   };

@@ -20,15 +20,14 @@ export const useSocialMedia = () => {
         .from('website_settings')
         .select('setting_value')
         .eq('setting_key', 'social_media')
-        .single();
+        .maybeSingle();
 
       if (error) {
         console.error('Error fetching social media:', error);
-        // Return default/empty values if there's an error
-        return {};
+        return null;
       }
 
-      return data?.setting_value as SocialMediaLinks || {};
+      return data?.setting_value as SocialMediaLinks || null;
     },
     retry: 1,
     staleTime: 5 * 60 * 1000, // 5 minutes
