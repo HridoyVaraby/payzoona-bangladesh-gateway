@@ -63,7 +63,7 @@ const Footer = () => {
         <div className="mt-12 pt-8 border-t border-gray-200">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <p className="text-gray-500 text-sm mb-4 md:mb-0">
-              &copy; 2022 - {currentYear} Payzoona. All rights reserved.
+              &copy; 2022 - {currentYear} Payzoona. All rights reserved. Developed by <a href="https://varabit.com/" >Varabit Web Design & Development.</a>
             </p>
             <div className="flex space-x-6">
               <Link to="/terms" className="text-sm text-gray-500 hover:text-payzoona-teal">Terms of Service</Link>
